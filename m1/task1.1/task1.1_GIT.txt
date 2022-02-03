@@ -1,0 +1,16 @@
+9a55122 HEAD@{0}: Branch: renamed refs/heads/main to refs/heads/main
+9a55122 HEAD@{2}: merge develop: Fast-forward
+7788111 HEAD@{3}: checkout: moving from develop to main
+9a55122 HEAD@{4}: commit (merge): Resolved merge conflict
+5336c27 HEAD@{5}: merge images: Fast-forward
+46beea6 HEAD@{6}: checkout: moving from styles to develop
+80b1e06 HEAD@{7}: commit: Change index.html
+51d66c9 HEAD@{8}: commit: Create style.css
+46beea6 HEAD@{9}: checkout: moving from develop to styles
+46beea6 HEAD@{10}: checkout: moving from images to develop
+5336c27 HEAD@{11}: commit: Add images source
+9616696 HEAD@{12}: commit: Add new images
+46beea6 HEAD@{13}: checkout: moving from develop to images
+46beea6 HEAD@{14}: commit: Create index.html
+7788111 HEAD@{15}: checkout: moving from main to develop
+7788111 HEAD@{16}: commit (initial): init commit

@@ -8,7 +8,9 @@ As a result of following instructions to the task, I have:
 - created three new branches (develop, images, styles)
 - made commits on these branches
 
-After modifying the same file on two branches with common parent, and trying to merge them back, a merge conflict was encountered.
+After modifying the same file on two branches with common parent, and trying to merge them back, a merge conflict was encountered:
+
+![Merging process](images/2022-02-03-144600_836x1000_scrot.png)
 
 To resolve it, I edited conflicting file `index.html` by manually merging changes delimited by conflict markers and then removing them.
 

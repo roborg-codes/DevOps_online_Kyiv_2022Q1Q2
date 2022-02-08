@@ -133,7 +133,7 @@ After examining `Vagrantfile`, it was time to pull the image and run the box:
 ![Running Vagrant up](./images/vagrantup.png)
 
 Further process required some troubleshooting, but eventually I got the box up and running.
-By default box was actually available on LAN:
+By default box wasn't actually available on 127.0.0.1:
 
 ![ssh into vagrant](./images/vagrantssh.png)
 

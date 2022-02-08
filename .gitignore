@@ -1,2 +1,4 @@
 # Notes and materials
 /lectures/**
+/m2/**/*.iso
+/m2/**/**/*.vagrant

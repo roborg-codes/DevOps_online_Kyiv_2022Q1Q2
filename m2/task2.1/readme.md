@@ -150,7 +150,9 @@ It then, through provisioning sets up a basic nginx setup, creates a new user on
 So that changes in `./html` are visible in browser.
 This could be extended with custom nginx configuration, but that is out of scope.
 
-The following is the `Vagrantfile` itself:
+![Working with machine built with Vagrantfile](./images/vagrantfile.png)
+
+The following is `Vagrantfile` itself:
 
 ```Vagrantfile
 VAGRANT_API="2"

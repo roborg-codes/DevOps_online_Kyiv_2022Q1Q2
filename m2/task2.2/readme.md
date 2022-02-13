@@ -127,9 +127,18 @@ As well as creating a service, and finally getting access via external endpoint:
 
 # Task 2.2.14
 
-A serverless application requires google's functions_framework package (python). Program that uses that package is then deployed via `gcloud deploy <name> --runtime <language> --trigger-<type> --allow-unauthenticated`:
+A serverless application requires google's functions_framework package (python). Program that uses that package is then deployed via `gcloud deploy <name> --runtime <language> --trigger-<type> --allow-unauthenticated`.
+
+In my case, deployment was executed with simple:
+
+```shell
+$ gcloud deploy hello_http --runtime python39 --trigger-http --allow-unauthenticated
+```
+
+Resulting in a publicly accessible app:
 
 ![Serverless hello world](./images/cf-hw.png)
+
 
 # Task 2.2.15
 

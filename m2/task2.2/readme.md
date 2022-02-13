@@ -82,7 +82,7 @@ and in crontab:
 
 ## Task 2.2.11-12
 
-Creating, uploading and retrieving is straightforward.
+Creating, uploading and retrieving objects in GCS is straightforward.
 
 GCP offers *Cloud Storage* service for object storage.
 So I created a simple bucket and uploaded some source code there.

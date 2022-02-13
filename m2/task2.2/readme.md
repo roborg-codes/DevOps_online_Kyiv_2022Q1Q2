@@ -89,7 +89,7 @@ So I created a simple bucket and uploaded some source code there.
 
 ![Bucket folder containing some files](./images/bucket.png)
 
-Afterwards, these files are accessible either through console's download bytton, command line utility, or via the internet. But only if public access was enabled.
+Afterwards, these files are accessible either through console's download button, command line utility, or via the internet. But only if public access was enabled.
 
 ![Retrieving files via cli](./images/gs-cli.png)
 ![Uploading file via cli](./images/gs-up-cli.png)

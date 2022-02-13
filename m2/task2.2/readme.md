@@ -14,7 +14,7 @@ In a matter of minutes, vm was up and running.
 
 Afterwards I have created a new snapshot of this machine in storage section:
 
-![Created snapshot](./images/snapshot-created.png)
+![Created snapshot](./images/vm-snapshot.png)
 
 While creating the VM, I had an option to create and attach additional block devices.
 The process for doing that separately is essentialy the same.

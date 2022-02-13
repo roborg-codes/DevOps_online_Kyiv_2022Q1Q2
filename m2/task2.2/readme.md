@@ -23,6 +23,7 @@ I also recieved a warning that the disk is unformatted, and so I had to create p
 
 ```shell
 # fdisk /dev/sdb
+# mkfs.ext4 /dev/sdb1
 # mount /dev/sdb1 /mnt/
 ```
 

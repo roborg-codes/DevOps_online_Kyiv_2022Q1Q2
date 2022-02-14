@@ -14,7 +14,7 @@ In a matter of minutes, vm was up and running.
 
 Afterwards I have created a new snapshot of this machine in storage section:
 
-![Created snapshot](./images/snapshot-created.png)
+![Created snapshot](./images/vm-snapshot.png)
 
 While creating the VM, I had an option to create and attach additional block devices.
 The process for doing that separately is essentialy the same.
@@ -23,6 +23,7 @@ I also recieved a warning that the disk is unformatted, and so I had to create p
 
 ```shell
 # fdisk /dev/sdb
+# mkfs.ext4 /dev/sdb1
 # mount /dev/sdb1 /mnt/
 ```
 
@@ -81,14 +82,14 @@ and in crontab:
 
 ## Task 2.2.11-12
 
-Creating, uploading and retrieving is straightforward.
+Creating, uploading and retrieving objects in GCS is straightforward.
 
 GCP offers *Cloud Storage* service for object storage.
 So I created a simple bucket and uploaded some source code there.
 
 ![Bucket folder containing some files](./images/bucket.png)
 
-Afterwards, these files are accessible either through console's download bytton, command line utility, or via the internet. But only if public access was enabled.
+Afterwards, these files are accessible either through console's download button, command line utility, or via the internet. But only if public access was enabled.
 
 ![Retrieving files via cli](./images/gs-cli.png)
 ![Uploading file via cli](./images/gs-up-cli.png)
@@ -126,9 +127,18 @@ As well as creating a service, and finally getting access via external endpoint:
 
 # Task 2.2.14
 
-A serverless application requires google's functions_framework package (python). Program that uses that package is then deployed via `gcloud deploy <name> --runtime <language> --trigger-<type> --allow-unauthenticated`:
+A serverless application requires google's functions_framework package (python). Program that uses that package is then deployed via `gcloud deploy <name> --runtime <language> --trigger-<type> --allow-unauthenticated`.
+
+In my case, deployment was executed with simple:
+
+```shell
+$ gcloud deploy hello_http --runtime python39 --trigger-http --allow-unauthenticated
+```
+
+Resulting in a publicly accessible app:
 
 ![Serverless hello world](./images/cf-hw.png)
+
 
 # Task 2.2.15
 

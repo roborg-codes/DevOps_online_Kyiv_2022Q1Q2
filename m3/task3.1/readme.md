@@ -17,7 +17,7 @@ Home office
 For Home office, I had a PC connected to a wireless router.
 Unfortunately, in orded to connect to the network, Packet Tracer required me to use network module different from what was described in the task. Otherwise it wouldn't connect.
 
-First PC recieved static IP of `192.168.0.22/24`, since 12+10 = 22:
+First PC recieved static IP of `192.168.0.22/24`:
 
 ![Client 3 IP configuration](./images/homeoffice-pc-ip.png)
 

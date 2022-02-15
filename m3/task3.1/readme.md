@@ -53,4 +53,27 @@ we can then reach all the other devices on the network:
 
 ![Web Server 1](./images/datacenter-ping.png)
 
+Additional task
+---------------
+
+After installing and downloading wireshark, I started listening on `enp0s3` interface while downloading some binaries from github.
+
+![Every TCP packet captured](./images/wireshark-tcp-capture.png)
+
+After the download was complete, I filtered out everything except `tcp:443` and began inspecting the first SYN request:
+
+![TCP segment in wireshark](./images/wireshark-packet-info.png)
+
+Here is the data found in this TCP packet:
+
+- sender MAC: `52:54:00:12:35:02`
+- reciever MAC: `02:c2:dc:03:55:bb`
+- sender IP: `140.82.121.4`
+- reciever IP: `10.0.2.15`
+- sender TCP port: `443`
+- reciever TCP port: `47160`
+
+Where reciever is me, and sender is github server.
+
+
 Thus concluding task 3.1.

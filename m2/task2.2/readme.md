@@ -60,7 +60,7 @@ Deployment automatically sets firewall rules to allowing connections on `tcp:80`
 
 ![Firewall rules for Wordpress instance](./images/wp-firewall.png)
 
-Therefore, at this point the website is already available on the Internet
+Therefore, at this point the website is already available on the internet.
 Next step was reserving static IP for this particular VM instance:
 
 ![Reserving static IP](./images/wp-staticip.png)

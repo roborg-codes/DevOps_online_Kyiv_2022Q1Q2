@@ -142,6 +142,6 @@ Resulting in a publicly accessible app:
 
 # Task 2.2.15
 
-Finally, I created a [webpage](https://storage.googleapis.com/dk2q12-static-page/index.html) with GCS. Google Domains is also a non-freetier service, and unfortunately my registrar didn't offer free domains.
+Finally, I created a webpage with GCS at http://rrops.pp.ua/. The page still lacks SSL, which could be either ordered in the registrar, or generated on a compute engine serving this page.
 
 And this concludes Task 2.2.

@@ -1,5 +1,7 @@
 # Task 4.1
 
+## Part 1
+
 Logging as root.
 ----------------
 
@@ -167,4 +169,60 @@ The format is as follows:
 
 Additionaly `-A` flag lists hidden directories except `.` and `..`
 `-l` lists all the additional info
-`-h` displays sizes in huma readable format.
+`-h` displays sizes in human readable format instead of bytes.
+
+## Part 2
+
+The `tree` command
+------------------
+
+Tree outputs a tree of directory structure in a neat visual.
+The command, through it's flags allows me to control the output.
+For exampe, in order to get all the files that contain 'c' character I need to enter:
+
+```shell
+$ tree -P *[cC]*
+```
+
+or
+
+```shell
+$ tree --ignore-case -P *c*
+```
+
+And for listing subdirectories up to a specific (instead of all) level, I'd need to enter:
+
+```shell
+$ tree -L 2
+```
+
+
+Determining filetype
+--------------------
+
+General file type can be determined via `$ file` command with the filename passed as argument.
+For example: a binary executable (and it's type), a tarball, other archives, directories, ascii files (csv too), xml files(office files too).
+
+
+Navigating filesystem
+----------------------
+
+I am already familiar with absolute and relative paths, as well as using `cd` to navigate the filesystem.
+
+Relative paths refer to paths not beginning with `/`, which refer to root directory.
+Instead it signifies a path which uses current working directory as it's "root".
+It can not only refer to files velow working directory, but also ones above through `..` special directory, as well as itself with `.`.
+Absolute paths begin with `/` or root directory and give the full path from root to the file that is being refered to.
+
+Shell expansion of `~` helps with creating short absolute paths.
+But it may cause some problems because it expands to home directory of the current user running the command.
+
+If i'd like to return to the home directory, i could either just type `cd` or `cd ~`, the result would be the same.
+
+
+The `ls` command explanations
+-----------------------------
+
+For the ls -l and -a flags explanations please refer to the first part of this task.
+
+The only remark here is that `-a` displays `.` and `..` directories, while `-A` displays the same output as `-a` but without the special directories.

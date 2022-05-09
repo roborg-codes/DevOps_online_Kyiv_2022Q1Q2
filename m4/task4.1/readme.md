@@ -19,6 +19,9 @@ Use `passwd` utility.
 `passwd` utility can be used to change user's password or other users' passwords (as root).
 Especially useful for administrators who may need to adjust password policy.
 It also checks for basic password security.
+For example, password `vagrant` would not be accepted if password is too similar, like `vagrant2`.
+This kind of basic check would be [very nifty for some users](https://web.archive.org/web/20220422221426/https://twitter.com/kobzevvv/status/1420295444694028290).
+
 `passwd` may modify the following system files:
 
 1. `/etc/passwd` - basic information about users (including wether or not user has password set)
@@ -208,7 +211,6 @@ Navigating filesystem
 ----------------------
 
 I am already familiar with absolute and relative paths, as well as using `cd` to navigate the filesystem.
-
 Relative paths refer to paths not beginning with `/`, which refer to root directory.
 Instead it signifies a path which uses current working directory as it's "root".
 It can not only refer to files velow working directory, but also ones above through `..` special directory, as well as itself with `.`.
@@ -223,6 +225,116 @@ If i'd like to return to the home directory, i could either just type `cd` or `c
 The `ls` command explanations
 -----------------------------
 
-For the ls -l and -a flags explanations please refer to the first part of this task.
+For the ls `-l` and `-a` flags explanations please refer to the first part of this task.
 
-The only remark here is that `-a` displays `.` and `..` directories, while `-A` displays the same output as `-a` but without the special directories.
+The only thing to note here is that `-a` displays `.` and `..` directories, while `-A` displays the same output, but without these special directories.
+
+
+Performing a sequence of operations 1
+-------------------------------------
+
+![Performing the task](./images/sequence_1.png)
+
+
+Performing a sequence of operations 2
+-------------------------------------
+
+Here is the end result:
+
+![Performing the task](./images/sequence_2.png)
+
+As we can see on the screenshot, the changes made to the original file do not affect the hard link.
+Since the hard link refers to the same inode, or a physical place rather than a filesystem, in storage as the original file, the data will still be accesible even if the original file is "deleted".
+
+The soft link, on the other hand, only refers to the location of the original file.
+Kind of like a pointer in C.
+It could be a relative or an absolute path, nevertheless it will always refer to it.
+Hence if the original file is in trouble, the link will break.
+It will also break if the path of the file is changed or the link is moved (in case it points to a relative path), unless the original file is moved too.
+
+
+Using the `locate` utility
+--------------------------
+
+Locate helps me find files in a local database.
+With this utility installed I ran to find the necessary files:
+
+![Using locate](./images/locate.png)
+
+
+Mounted partitions
+------------------
+
+To determine which ones were mounted, I used `lsblk` command, which lists all block devices connected to the system.
+
+![lsblk](./images/partitions.png)
+
+Devices with non-empty MOUNTPOINT field are indeed mounted to their respective mountpoints.
+Currently, there is only one vdi block device, but in case of another device, such as a flash drive being connected, I would see it as /dev/sdb, sdc, sde, etc.
+The devices then contains the partitions in question (sdb1, sdb2, sdb3, sdc1, etc.).
+
+
+Count the number of lines
+--------------------------
+
+Finding sequences in a file can be done through `grep` and counting the lines is done by `wc`:
+
+```shell
+$ grep "pattern" file.txt | wc -l
+```
+
+Since grep without additional flags outputs matched lines instead of words, this command should give accurate output.
+
+
+Using the `find` command
+------------------------
+
+![Using find](./images/find_host.png)
+
+And the result is available [here](./find_host_output.txt).
+
+
+Listing objects containing sequence with grep
+----------------------------------------------
+
+This seems like a trick question, since those two utilities are used for different purposes.
+`find` searches directories for files, and grep searches contents of a file.
+
+Therefore, the correct thing to do would be to use:
+
+```shell
+# grep -r ss /etc
+```
+
+Task 12 skipped, hope to get back to it
+---------------------------------------
+
+
+Devices and their types
+-----------------------
+
+Block devices could be seen in task 8:
+
+![Looking at partitions](./images/partitions.png)
+
+Where type denotes a specific block device's type.
+`lsblk` only lists block devices, meaning their main goal is simply transferring data in chunks (blocks) and usually refer to either disks or partitions.
+
+Other devices can be seen in `/dev` directory, which contains not only block devices, but all of them (mice, cameras, tty, other virtual "devices") as files.
+
+These can be seen with `$ ls -l /dev` command, where the character preceding permissions filed signifies what type of device is that.
+
+![Looking at devices](./images/devices_ls.png)
+
+- b for block
+- c for character (which is like block, but work with less data, for example tty)
+- p and s are pipes and sockets, which are helpful for interprocess communication.
+
+
+File types
+----------
+
+File type can be seen via `file` command.
+It can either give you general information of what kind of file it is, or a more detailed response.
+For example, a binary, txt, and an archive are all regular files, but the command is inteligent enough to tell which one it is.
+The other ones are devices(block, special), also sockets, pipes and directories.

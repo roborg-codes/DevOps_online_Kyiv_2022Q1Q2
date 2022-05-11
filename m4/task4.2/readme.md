@@ -122,6 +122,8 @@ To remove a password and prompt the user to change it, I would use
 
 This will simply expire the password and ask user for a new one as opposed to completely locking user out as shown in the example above.
 
+![Forcing user to change password](./images/expire.png)
+
 
 Using extended info in `ls`
 ---------------------------
@@ -169,7 +171,6 @@ Sequence of defining relations between user and the file
 Commands to change owners of a file and mode of access
 ------------------------------------------------------
 
-
 We can use 2 commands to change these parameters: `chown` and `chmod`.
 
 To change owners one can simpy use
@@ -200,6 +201,7 @@ where
 
 Also these can be coma separated -- `$ chmod a+r,go=wx file`.
 
+![Onscreen demonstration](./images/perms_and_ownrs.png)
 
 Octal notation
 --------------
@@ -239,6 +241,8 @@ Sticky bits and id substitution
 
 Sticky bits are a feature that allow the system to only allow change and deletion of a file to it's owner.
 This is mainly used in `/tmp` directory to prevent other users and processess to delete files used by other processess.
+
+![Sticky bits as seen in /tmp](./images/sticky.png)
 
 TODO: learn more on what id subsistution is.
 

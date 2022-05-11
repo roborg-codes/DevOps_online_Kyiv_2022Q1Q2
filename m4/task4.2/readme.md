@@ -105,7 +105,7 @@ To do so, I can expire it's password, which would lock it.
 # chage -E0 user
 ```
 
-or simply lock accessing with a password:
+and then simply lock access:
 
 ```
 # usermod -L user
@@ -114,3 +114,138 @@ or simply lock accessing with a password:
 Removing user's password
 ------------------------
 
+To remove a password and prompt the user to change it, I would use
+
+```shell
+# passwd --expire user
+```
+
+This will simply expire the password and ask user for a new one as opposed to completely locking user out as shown in the example above.
+
+
+Using extended info in `ls`
+---------------------------
+
+Answer can be seen in [task 4.1](../task4.1/readme.md), "Listing contents of $HOME."
+
+
+Access rights
+--------------
+
+Access rights are displayed as a sequence of characters
+
+```
+- rwx rwx rwx
+```
+
+where
+
+- r is reading rights, so accessig the contents
+- w is wrighting rights, or modifying the file
+- x is executing rights, which is for executing the file
+
+And the first character signifies type of the file:
+
+- "-" for regular files
+- "d" for directories
+- "b, c, p, etc." for other types such as devices or pipes and sockets
+
+Each row of rwx show permissions as follows:
+
+```
+"all users" "group owner" "user owner"
+```
+
+So `-r--rw-rwx` means that all users can read the file, members of the group that owns the file can read and write to it, and user owner of the file can read, write and execute it.
+
+NOTE: execution rights are required to read contents of a directory, which came to me as a surprise.
+
+
+Sequence of defining relations between user and the file
+--------------------------------------------------------
+
+
+
+Commands to change owners of a file and mode of access
+------------------------------------------------------
+
+
+We can use 2 commands to change these parameters: `chown` and `chmod`.
+
+To change owners one can simpy use
+
+```shell
+$ chown new_owner file
+```
+
+likewise, to change user and group
+
+```shell
+$ chown new_owner:new_group file
+```
+
+And for changing the group just omit the user (`:new group`).
+
+
+To change permissions, I can enter
+
+```shell
+$ chmod ugo+rwx file
+```
+
+where
+- `ugo` means that we want to modify Users, Group, and Owner permissions. Or use `a` instead
+- `+` means that we want to give permissions, otherwise use `-`. To reset permissions and only leave the ones mentioned by the command, use `=`.
+- `rwx` means that we want to grant everyone full permissions to read, write, and execute. `t` is also available and is used to set sticky bit for the file.
+
+Also these can be coma separated -- `$ chmod a+r,go=wx file`.
+
+
+Octal notation
+--------------
+
+Another way to use this command is in octal mode, where one can set permissions for each group in a form of a set of 3 digits from 0 to 7.
+So `chmod 750 file` would grant Users `rwx` permissions (7), Group `r-x` permissions (5), and the Owner `---` permissions (0).
+
+
+So this brings us to octal representation, which works the same way as described above.
+On a lower level, octal format perfectly represents 3 modes of access for each user:
+
+```
+r/w/x | binary | octal
+ ---  |  000   |   0
+ --x  |  001   |   1
+ -w-  |  010   |   2
+ -wx  |  011   |   3
+ r--  |  100   |   4
+ r-x  |  101   |   5
+ rw-  |  110   |   6
+ rwx  |  111   |   7
+```
+
+As we can see from this table above ([credit](https://www.baeldung.com/linux/chown-chmod-permissions)), three bits that represent octal numbers correspond to the afforementioned permissions.
+
+`umask` command is used to check and set default permissions for new files.
+It works by setting a certain value (4 digit sequence), which represents permissions that we don't want to give when creating files.
+
+1st digit represents sticky bit, and the rest is the octal notation.
+Default permissions can then be calculating by substracting each digit from max permissions (`666` for files and `777` for directories).
+
+Therefore, the default permissions (umask `0002`) for files is `664` or `rw-rw-r--` and `775` for directories or `rwxrwxr-x`.
+
+
+Sticky bits and id substitution
+-------------------------------
+
+Sticky bits are a feature that allow the system to only allow change and deletion of a file to it's owner.
+This is mainly used in `/tmp` directory to prevent other users and processess to delete files used by other processess.
+
+TODO: learn more on what id subsistution is.
+
+
+File attributes
+---------------
+
+File attributes are another feature that further describe operations allowed by the filesystem.
+These are all optional and simply describe some additional customization made by the user.
+For example, if one wants to make a file that is likely to be corrupted, one can enable journaling with `chattr +j file` or to prevent overwriting, add append only attribute with `chattr +a file`.

@@ -1,5 +1,7 @@
 # Python
 
+* note: all programs are located in the same 'directory' as this readme file.
+
 ## 1
 
 For this task a simple builtin module sufficed:

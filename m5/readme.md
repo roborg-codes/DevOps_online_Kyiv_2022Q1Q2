@@ -3,7 +3,7 @@
 For this task I began with setting up the server and the clients with respective addresses on the network interfaces:
 
 - Srv1 (Ubuntu server):
-- - enp0s3 -- 192.168.1.0/24 (Bridged); 10.0.2.0/24 (NAT, but later)
+- - enp0s3 -- 192.168.1.115/24 (Bridged); 10.0.2.15/24 (NAT, but later)
 - - enp0s8 -- 10.0.12.2/24
 - - enp0s9 -- 10.4.0.2/24
 - C1 (Ubuntu desktop):

@@ -2,3 +2,4 @@
 /lectures/**
 /m2/**/*.iso
 /m2/**/**/*.vagrant
+/m8/venv
